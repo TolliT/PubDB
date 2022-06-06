@@ -18,8 +18,8 @@ public class Drink extends Item {
     private DrinkType drinkType;
     @GetterFunctionName(name="getAlcoholPercentage")
     private Float alcoholPercentage;
-    @GetterFunctionName(name="getDrinkSizes")
-    private Float[] sizes; // literben TODO: normalisabb valtozonev maybe??
+    @GetterFunctionName(name="getDrinkPrice")
+    private Integer price; // literben TODO: normalisabb valtozonev maybe??
     //private HashMap<Float, Integer> prices; // urmertek - ar parokat tarolja el
 
     public Drink(Integer id, String name, DrinkType drinkType, Float alcoholPercentage, Float[] sizes){
@@ -32,12 +32,9 @@ public class Drink extends Item {
         if(this.alcoholPercentage > MAX_A_PERCENT) this.alcoholPercentage = MAX_A_PERCENT;
         else if(this.alcoholPercentage <  MIN_A_PERCENT) this.alcoholPercentage = MIN_A_PERCENT;
 
-        this.sizes = sizes;
-        // urmertek limitalasa
-        for(int i = 0; i < sizes.length; i++) {
-            if (this.sizes[i] > MAX_D_SIZE) this.sizes[i] = MAX_D_SIZE;
-            else if (this.sizes[i] < MIN_D_SIZE) this.sizes[i] = MIN_D_SIZE;
-        }
+        this.price = price;
+
+        if(this.price < 0){ this.price = 0; }
         //this.prices = prices;
     }
 
@@ -49,22 +46,18 @@ public class Drink extends Item {
         return this.alcoholPercentage;
     }
 
-    public Float[] getDrinkSizes(){
-        return this.sizes;
+    public Integer getDrinkPrice(){
+        return this.price;
     }
 
     public void saveData(){
         FileIO<Drink> f = new FileIO<Drink>();
         f.saveData(this);
     }
-    /*
-    public Integer getPrice(Float size){
-        // returneli a valuet vagy nullat ha nem letezik a kulcs
-        return this.prices.getOrDefault(size, 0);
-    }
 
-    public HashMap<Float, Integer> getPriceList(){
-        return this.prices;
+    public String[] readData(){
+        FileIO<Drink> f = new FileIO<Drink>();
+        //f.readData(this);
+        return  f.readData(this);
     }
-    */
 }
