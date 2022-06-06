@@ -1,11 +1,13 @@
 package com.kocsma.model;
 
+import com.kocsma.model.enumerator.DrinkType;
 import com.opencsv.CSVWriter;
 
 import java.io.FileWriter;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class FileIO <T> {
     public void saveData(T entity) {
@@ -87,5 +89,14 @@ public class FileIO <T> {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+    // placehodler
+    public Drink readData(){
+        HashMap<Float, Integer> prices2 = new HashMap<Float, Integer>();
+        prices2.put(0.30f, 800);
+        prices2.put(0.50f, 1000);
+
+        Drink testDrinkBeer = new Drink(2, "szar sor", DrinkType.BEER, 0.04f, prices2);
+        return testDrinkBeer;
     }
 }

@@ -4,16 +4,24 @@ import com.kocsma.model.Drink;
 import com.kocsma.model.enumerator.DrinkType;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Main {
 
     public static void main(String[] args) {
         // TESTING
-        Float[] sizes = {-0.01f, 0.02f, 0.04f, 1.50f};
+        HashMap<Float, Integer> prices = new HashMap<Float, Integer>();
+        prices.put(0.02f, 1000);
+        prices.put(0.04f, 1800);
 
-        Drink testDrink = new Drink(2, "Teszt Ital2", DrinkType.VODKA, 0.50f, sizes);
-        System.out.println(Arrays.toString(testDrink.getDrinkSizes()));
+        HashMap<Float, Integer> prices2 = new HashMap<Float, Integer>();
+        prices.put(0.30f, 800);
+        prices.put(0.50f, 1000);
 
-        testDrink.saveData();
+        Drink testDrinkTomeny = new Drink(2, "szar tomeny", DrinkType.SHOT, 0.50f, prices);
+        Drink testDrinkBeer = new Drink(2, "szar sor", DrinkType.BEER, 0.04f, prices2);
+
+        testDrinkTomeny.saveData();
+        testDrinkBeer.saveData();
     }
 }

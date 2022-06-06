@@ -18,11 +18,11 @@ public class Drink extends Item {
     private DrinkType drinkType;
     @GetterFunctionName(name="getAlcoholPercentage")
     private Float alcoholPercentage;
-    @GetterFunctionName(name="getDrinkSizes")
-    private Float[] sizes; // literben TODO: normalisabb valtozonev maybe??
-    //private HashMap<Float, Integer> prices; // urmertek - ar parokat tarolja el
+    @GetterFunctionName(name="getDrinkPrices")
+    //private Float[] sizes; // literben TODO: normalisabb valtozonev maybe??
+    private HashMap<Float, Integer> prices; // urmertek - ar parokat tarolja el
 
-    public Drink(Integer id, String name, DrinkType drinkType, Float alcoholPercentage, Float[] sizes){
+    public Drink(Integer id, String name, DrinkType drinkType, Float alcoholPercentage, HashMap<Float, Integer> prices){
         super(id, name);
         // TODO: tesztelni az enum letezeset
         this.drinkType = drinkType;
@@ -32,13 +32,16 @@ public class Drink extends Item {
         if(this.alcoholPercentage > MAX_A_PERCENT) this.alcoholPercentage = MAX_A_PERCENT;
         else if(this.alcoholPercentage <  MIN_A_PERCENT) this.alcoholPercentage = MIN_A_PERCENT;
 
-        this.sizes = sizes;
+        this.prices = prices;
+
         // urmertek limitalasa
+        /*
         for(int i = 0; i < sizes.length; i++) {
             if (this.sizes[i] > MAX_D_SIZE) this.sizes[i] = MAX_D_SIZE;
             else if (this.sizes[i] < MIN_D_SIZE) this.sizes[i] = MIN_D_SIZE;
         }
-        //this.prices = prices;
+
+         */
     }
 
     public DrinkType getDrinkType(){
@@ -49,22 +52,12 @@ public class Drink extends Item {
         return this.alcoholPercentage;
     }
 
-    public Float[] getDrinkSizes(){
-        return this.sizes;
-    }
-
     public void saveData(){
         FileIO<Drink> f = new FileIO<Drink>();
         f.saveData(this);
     }
-    /*
-    public Integer getPrice(Float size){
-        // returneli a valuet vagy nullat ha nem letezik a kulcs
-        return this.prices.getOrDefault(size, 0);
-    }
 
-    public HashMap<Float, Integer> getPriceList(){
+    public HashMap<Float, Integer> getDrinkPrices(){
         return this.prices;
     }
-    */
 }
