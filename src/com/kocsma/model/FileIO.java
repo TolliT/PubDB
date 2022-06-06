@@ -1,19 +1,16 @@
 package com.kocsma.model;
 
-import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 
-import java.io.FileReader;
 import java.io.FileWriter;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
 public class FileIO <T> {
-    private final String separator = "\t";
-
     public void saveData(T entity) {
+        String splitter = "\t";
+
         Class<?> clazz = entity.getClass();
         Class<?> superClazz = clazz.getSuperclass();
 
@@ -21,7 +18,7 @@ public class FileIO <T> {
             // osztalynak megfelelo database ertek lekerese
             Object val = clazz.getField("database").get(clazz);
 
-            FileWriter f = new FileWriter(val.toString(), true);
+            FileWriter f = new FileWriter(val.toString());
             CSVWriter writer = new CSVWriter(f);
 
             StringBuilder record = null;
@@ -47,7 +44,7 @@ public class FileIO <T> {
                         record = new StringBuilder(value);
                     }
                     else{
-                        record.append(separator).append(value);
+                        record.append(splitter).append(value);
                     }
                 }
             }
@@ -72,14 +69,14 @@ public class FileIO <T> {
                     System.out.println(varName + " = " + value);
 
                     assert record != null;
-                    record.append(separator).append(value);
+                    record.append(splitter).append(value);
                 }
             }
 
             System.out.println(record);
 
             assert record != null;
-            String[] toWrite = record.toString().split(separator);
+            String[] toWrite = record.toString().split(splitter);
 
             System.out.println(Arrays.toString(toWrite));
 
@@ -88,43 +85,7 @@ public class FileIO <T> {
 
 
         } catch (Exception ex) {
-            // TODO: hibakezelo fuggveny
             ex.printStackTrace();
         }
-    }
-
-    public String[] readData(T entity){
-        Class<?> clazz = entity.getClass();
-
-        try{
-            Object val = clazz.getField("database").get(clazz);
-            String name = clazz.getSimpleName();
-
-            FileReader f = new FileReader(val.toString());
-            CSVReader reader = new CSVReader(f);
-            String[] record;
-
-            while((record = reader.readNext()) != null) {
-                for (String cell : record) {
-                    System.out.print(cell + separator);
-                }
-
-                /*
-                Class<?> cls = Class.forName(name);
-                Constructor<?> cons = cls.getDeclaredConstructor();
-                Object[] obj = record;
-                Object newInstance = cons.newInstance(obj);
-                return (Class<?>) newInstance;
-                 */
-            }
-            return record;
-            //System.out.println(Arrays.toString(reader.readNext()));
-
-        } catch (Exception ex) {
-            // TODO: hibakezelo fuggveny
-            ex.printStackTrace();
-        }
-
-        return null;
     }
 }

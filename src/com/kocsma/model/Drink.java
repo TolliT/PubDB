@@ -57,13 +57,6 @@ public class Drink extends Item {
         FileIO<Drink> f = new FileIO<Drink>();
         f.saveData(this);
     }
-
-    public String[] readData(){
-        FileIO<Drink> f = new FileIO<Drink>();
-        //f.readData(this);
-        return  f.readData(this);
-    }
-
     /*
     public Integer getPrice(Float size){
         // returneli a valuet vagy nullat ha nem letezik a kulcs
