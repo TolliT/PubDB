@@ -9,10 +9,9 @@ public class Main {
 
     public static void main(String[] args) {
         // TESTING
-        Float[] sizes = {-0.01f, 0.02f, 0.04f, 1.50f};
 
-        Drink testDrink = new Drink(2, "Teszt Ital2", DrinkType.BEER, 0.50f, sizes);
-        System.out.println(Arrays.toString(testDrink.getDrinkSizes()));
+        Drink testDrink = new Drink(2, "Teszt Ital2", DrinkType.BEER, 0.50f, 1000);
+        System.out.println(testDrink.getDrinkPrice());
 
         testDrink.saveData();
     }

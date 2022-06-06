@@ -22,7 +22,7 @@ public class Drink extends Item {
     private Integer price; // literben TODO: normalisabb valtozonev maybe??
     //private HashMap<Float, Integer> prices; // urmertek - ar parokat tarolja el
 
-    public Drink(Integer id, String name, DrinkType drinkType, Float alcoholPercentage, Float[] sizes){
+    public Drink(Integer id, String name, DrinkType drinkType, Float alcoholPercentage, Integer price){
         super(id, name);
         // TODO: tesztelni az enum letezeset
         this.drinkType = drinkType;
