@@ -10,9 +10,6 @@ public class Drink extends Item {
     public final Float MAX_A_PERCENT = 100.0f;
     public final Float MIN_A_PERCENT = 0.0f;
 
-    public final Float MIN_D_SIZE = 0.02f;
-    public final Float MAX_D_SIZE = 1.00f;
-
     @GetterFunctionName(name="getDrinkType")
     private DrinkType drinkType;
     @GetterFunctionName(name="getAlcoholPercentage")
@@ -22,7 +19,7 @@ public class Drink extends Item {
     //private HashMap<Float, Integer> prices; // urmertek - ar parokat tarolja el
 
     public Drink(String name, DrinkType drinkType, Float alcoholPercentage, Integer price){
-        super(name);
+        super(name, price);
         // TODO: tesztelni az enum letezeset
         this.drinkType = drinkType;
 
@@ -50,7 +47,7 @@ public class Drink extends Item {
     }
 
     public void saveData(){
-        FileIO<Drink> f = new FileIO<Drink>();
+        FileIO<Drink> f = new FileIO<>();
         f.saveData(this);
     }
 }

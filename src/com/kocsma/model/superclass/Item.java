@@ -8,12 +8,19 @@ public abstract class Item {
 
     @GetterFunctionName(name="getName")
     private String name;
+    @GetterFunctionName(name="getPrice")
+    private Integer price;
 
-    public Item(String name){
+    public Item(String name, Integer price){
         this.name = name;
+        this.price = price;
     }
 
     public String getName(){
         return name;
+    }
+
+    public Integer getPrice(){
+        return price;
     }
 }

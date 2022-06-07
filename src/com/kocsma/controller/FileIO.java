@@ -1,17 +1,14 @@
 package com.kocsma.controller;
 
 import com.kocsma.model.GetterFunctionName;
-import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
 public class FileIO <T> {
-    private final String separator = "\t";
 
     public void saveData(T entity) {
         Class<?> clazz = entity.getClass();
@@ -33,6 +30,7 @@ public class FileIO <T> {
             System.out.println(Arrays.toString(sProperties));
 
             // Super class mezok
+            String separator = "\t";
             for (Field sProperty : sProperties) {
                 if (sProperty.getAnnotation(GetterFunctionName.class) != null) {
                     String gfn = sProperty.getAnnotation(GetterFunctionName.class).name();
