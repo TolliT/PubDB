@@ -1,18 +1,23 @@
 package com.kocsma;
 
+import com.kocsma.controller.FileInit;
 import com.kocsma.model.Drink;
 import com.kocsma.model.enumerator.DrinkType;
-
-import java.util.Arrays;
 
 public class Main {
 
     public static void main(String[] args) {
         // TESTING
 
-        Drink testDrink = new Drink(2, "Teszt Ital2", DrinkType.BEER, 0.50f, 1000);
+        Drink testDrink = new Drink("Teszt Ital2", DrinkType.BEER, 0.50f, 1000);
         System.out.println(testDrink.getDrinkPrice());
 
-        testDrink.saveData();
+        Drink[] drinkList = FileInit.loadDrinkData();
+
+        assert drinkList != null;
+        for (Drink drink : drinkList) {
+            System.out.println(drink.getName());
+        }
+        //testDrink.saveData();
     }
 }

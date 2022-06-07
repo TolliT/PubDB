@@ -1,9 +1,8 @@
 package com.kocsma.model;
 
+import com.kocsma.controller.FileIO;
 import com.kocsma.model.superclass.Item;
 import com.kocsma.model.enumerator.DrinkType;
-
-import java.util.HashMap;
 
 public class Drink extends Item {
     public static final String database = "./resources/drinkDB.csv";
@@ -22,8 +21,8 @@ public class Drink extends Item {
     private Integer price; // literben TODO: normalisabb valtozonev maybe??
     //private HashMap<Float, Integer> prices; // urmertek - ar parokat tarolja el
 
-    public Drink(Integer id, String name, DrinkType drinkType, Float alcoholPercentage, Integer price){
-        super(id, name);
+    public Drink(String name, DrinkType drinkType, Float alcoholPercentage, Integer price){
+        super(name);
         // TODO: tesztelni az enum letezeset
         this.drinkType = drinkType;
 
@@ -53,11 +52,5 @@ public class Drink extends Item {
     public void saveData(){
         FileIO<Drink> f = new FileIO<Drink>();
         f.saveData(this);
-    }
-
-    public String[] readData(){
-        FileIO<Drink> f = new FileIO<Drink>();
-        //f.readData(this);
-        return  f.readData(this);
     }
 }

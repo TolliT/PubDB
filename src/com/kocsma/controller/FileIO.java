@@ -1,5 +1,6 @@
-package com.kocsma.model;
+package com.kocsma.controller;
 
+import com.kocsma.model.GetterFunctionName;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 
@@ -90,40 +91,5 @@ public class FileIO <T> {
             // TODO: hibakezelo fuggveny
             ex.printStackTrace();
         }
-    }
-
-    public String[] readData(T entity){
-        Class<?> clazz = entity.getClass();
-
-        try{
-            Object val = clazz.getField("database").get(clazz);
-            //String name = clazz.getSimpleName();
-
-            FileReader f = new FileReader(val.toString());
-            CSVReader reader = new CSVReader(f);
-            String[] record;
-
-            while((record = reader.readNext()) != null) {
-                for (String cell : record) {
-                    System.out.print(cell + separator);
-                }
-
-                /*
-                Class<?> cls = Class.forName(name);
-                Constructor<?> cons = cls.getDeclaredConstructor();
-                Object[] obj = record;
-                Object newInstance = cons.newInstance(obj);
-                return (Class<?>) newInstance;
-                 */
-            }
-            return record;
-            //System.out.println(Arrays.toString(reader.readNext()));
-
-        } catch (Exception ex) {
-            // TODO: hibakezelo fuggveny
-            ex.printStackTrace();
-        }
-
-        return null;
     }
 }
