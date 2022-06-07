@@ -6,21 +6,21 @@ public abstract class Item {
     // TODO: kicserelni az aktualis adatbazisra
     public static final String database = "placeholder.csv";
 
-    @GetterFunctionName(name="getID")
-    private Integer id;
     @GetterFunctionName(name="getName")
     private String name;
+    @GetterFunctionName(name="getPrice")
+    private Integer price;
 
-    public Item(Integer id, String name){
-        this.id = id;
+    public Item(String name, Integer price){
         this.name = name;
-    }
-
-    public Integer getID(){
-        return id;
+        this.price = price;
     }
 
     public String getName(){
         return name;
+    }
+
+    public Integer getPrice(){
+        return price;
     }
 }

@@ -1,5 +1,22 @@
 package com.kocsma.model;
 
-public class Food {
-    public static final String database = "foodDB.csv";
+import com.kocsma.model.superclass.Item;
+
+public class Food extends Item {
+    public static final String database = "./resources/foodDB.csv";
+
+    @GetterFunctionName(name="getCalories")
+    public Integer calories;
+
+    public Food(String name, Integer calories, Integer price){
+        super(name, price);
+
+        this.calories = calories;
+
+        if(this.calories < 0) this.calories = 0;
+    }
+
+    public Integer getCalories(){
+        return this.calories;
+    }
 }
