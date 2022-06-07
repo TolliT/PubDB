@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Filters {
 
-    public ArrayList<Drink> wineBeerFilter(DrinkType choice, ArrayList<Drink> drinkList){
+    public static ArrayList<Drink> wineBeerFilter(DrinkType choice, ArrayList<Drink> drinkList){
 
 
 
@@ -21,7 +21,7 @@ public class Filters {
         return drinkList;
     }
 
-    public ArrayList<Drink> shotFilter(Boolean choice, ArrayList<Drink> drinkList){
+    public static ArrayList<Drink> shotFilter(Boolean choice, ArrayList<Drink> drinkList){
 
         if(choice){
             return drinkList;
