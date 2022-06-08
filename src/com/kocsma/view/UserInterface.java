@@ -97,7 +97,13 @@ public class UserInterface extends JFrame {
         lm.removeAllElements();
         this.lm.addElement("limit: "+ limit + " Ft");
         this.lm.addElement("Az este összege: "+ currPrice+ " Ft");
+        if(drinks.isEmpty() && food.isEmpty()){
+            this.lm.addElement("Ebben az árkategóriában most nem sikerült opciót találni, próbálja újra");
+        }
 
+        else if(drinks.isEmpty()){
+            this.lm.addElement("Úgy látszik, nem került alkohol a listára. Gratulálunk, megvan az esti sofőr!");
+        }
         for(int i = 0; i < drinks.size(); i++){
             this.lm.addElement(drinks.get(i).getName() + " " + drinks.get(i).getPrice() + "Ft " +
                     drinks.get(i).getAlcoholPercentage() + "%");
