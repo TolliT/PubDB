@@ -13,6 +13,9 @@ import static com.kocsma.controller.Filters.wineBeerFilter;
 import static com.kocsma.view.UserInterface.Cash;
 import static com.kocsma.view.UserInterface.isFood;
 
+/**A DrinkChooser-ben az adott ár limithez és a választáshoz képest Összeállít egy itallapot a listákból.
+ *
+ */
 
 public class DrinkChooser {
 
@@ -23,6 +26,7 @@ public class DrinkChooser {
 
 
 
+        //Új listákat generál amiket feltölt a Drink és Food osztályokból, listákból.
       ArrayList<Drink> filteredList=wineBeerFilter(drinkList);
 
       Boolean wantsToEat=isFood();
@@ -36,6 +40,7 @@ public class DrinkChooser {
 
       Random rand= new Random();
 
+        //Ha enni is szeretne valaki akkor pluszban abból a listából is választ egyet random
 
       if(wantsToEat){
           Food firstFood=foodList.get(rand.nextInt(foodList.size()));
@@ -45,11 +50,10 @@ public class DrinkChooser {
           }
       }
 
-
-
+      // és belekalkulálja és akkor az italfogyasztás lesz kevesebb
       while(currPrice<limit){
 
-
+            //étel választásnál 1:4-hez arányban adja az ételt az italhoz tehát nem lehet többet enni, mint inni
             if(wantsToEat && rand.nextInt(101)<25){
             newGeneratedFood=foodPicker(foodList, currPrice, limit);
          }
@@ -77,7 +81,7 @@ public class DrinkChooser {
       ui.ShowDrinks(generatedList, generatedFood, currPrice, limit);
 
   }
-
+        //random választ az italok közül a generált listából
    public static ArrayList<Drink> drinkPicker(ArrayList<Drink> filteredList, Integer currPrice, Integer limit){
         Random rand= new Random();
         int tries;

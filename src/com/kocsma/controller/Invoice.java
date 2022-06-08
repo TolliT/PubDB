@@ -7,8 +7,14 @@ import com.kocsma.model.superclass.Item;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+/**
+ * Nyugtát hoz létre csw fileba, kiírja a választott italokat/ételeket.
+ *
+ */
 public class Invoice {
     public static void CreateInvoice(ArrayList<Drink> drinkList, ArrayList<Food> foodList){
+        //bekéri a létrehozott kistákat és kiíratja az adatbázisba
+
         try {
             // Delete file contents
             FileWriter f = new FileWriter(Item.invoice, false);

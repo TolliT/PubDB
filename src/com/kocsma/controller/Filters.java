@@ -8,10 +8,16 @@ import java.util.ArrayList;
 import static com.kocsma.view.UserInterface.isBeer;
 import static com.kocsma.view.UserInterface.isShot;
 
+/**
+ * Kiválogatja a söröket vagy a borokat a listából attól függ melyiket választjuk.
+ */
 
 public class Filters {
 
     public static ArrayList<Drink> wineBeerFilter( ArrayList<Drink> drinkList){
+
+        //Eldöntjük, hogy sört vagy bort kérünk e
+        //Amelyiket választjuk abból a listából választ
 
         DrinkType choice = isBeer();
 
@@ -28,6 +34,9 @@ public class Filters {
     }
 
     public static ArrayList<Drink> shotFilter(ArrayList<Drink> drinkList){
+
+        // Eldöntjük, hogy kérünk e shot-ot vagy sem
+        //választ a shot listából ha az igent választjuk
 
         Boolean choice=isShot();
 
