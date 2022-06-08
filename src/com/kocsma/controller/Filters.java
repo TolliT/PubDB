@@ -23,6 +23,7 @@ public class Filters {
         }
         drinkList=shotFilter(drinkList);
 
+        shotFilter(drinkList);
         return drinkList;
     }
 

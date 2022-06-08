@@ -78,7 +78,7 @@ public class DrinkChooser {
 
   }
 
-   static ArrayList<Drink> drinkPicker(ArrayList<Drink> filteredList, Integer currPrice, Integer limit){
+   public static ArrayList<Drink> drinkPicker(ArrayList<Drink> filteredList, Integer currPrice, Integer limit){
         Random rand= new Random();
         int tries;
         ArrayList<Drink> newGeneratedList=new ArrayList<>();
