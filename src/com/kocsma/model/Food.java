@@ -1,5 +1,6 @@
 package com.kocsma.model;
 
+import com.kocsma.controller.FileIO;
 import com.kocsma.model.superclass.Item;
 
 public class Food extends Item {
@@ -18,5 +19,10 @@ public class Food extends Item {
 
     public Integer getCalories(){
         return this.calories;
+    }
+
+    public void saveData(){
+        FileIO<Food> f = new FileIO<>();
+        f.saveData(this);
     }
 }
