@@ -16,13 +16,13 @@ public class Invoice {
 
             for (Drink drink : drinkList) {
                 drink.saveData();
-                System.out.println(drink.getName());
+
             }
 
 
             for (Food food : foodList) {
                 food.saveData();
-                System.out.println(food.getName());
+
             }
         }catch (Exception ex) {
             // TODO: hibakezelo fuggveny

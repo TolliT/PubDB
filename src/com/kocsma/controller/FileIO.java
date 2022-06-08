@@ -26,8 +26,7 @@ public class FileIO <T> {
             Field[] properties = clazz.getDeclaredFields();
             Field[] sProperties = superClazz.getDeclaredFields();
 
-            System.out.println(Arrays.toString(properties));
-            System.out.println(Arrays.toString(sProperties));
+
 
             // Super class mezok
             String separator = "\t";
@@ -39,7 +38,7 @@ public class FileIO <T> {
                     String varName = sProperty.getName();
                     String value = gm.invoke(entity).toString();
 
-                    System.out.println(varName + " = " + value);
+
 
                     if(record == null){
                         record = new StringBuilder(value);
@@ -67,19 +66,19 @@ public class FileIO <T> {
                         value = gm.invoke(entity).toString();
                     }
 
-                    System.out.println(varName + " = " + value);
+
 
                     assert record != null;
                     record.append(separator).append(value);
                 }
             }
 
-            System.out.println(record);
+
 
             assert record != null;
             String[] toWrite = record.toString().split(separator);
 
-            System.out.println(Arrays.toString(toWrite));
+
 
             writer.writeNext(toWrite);
             writer.close();

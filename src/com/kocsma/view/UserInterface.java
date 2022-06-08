@@ -93,8 +93,10 @@ public class UserInterface extends JFrame {
                 JOptionPane.PLAIN_MESSAGE));
         return returnValue;
     }
-    public void ShowDrinks(ArrayList<Drink> drinks, ArrayList<Food> food){
+    public void ShowDrinks(ArrayList<Drink> drinks, ArrayList<Food> food, Integer currPrice, Integer limit){
         lm.removeAllElements();
+        this.lm.addElement("limit: "+ limit + " Ft");
+        this.lm.addElement("Az este összege: "+ currPrice+ " Ft");
 
         for(int i = 0; i < drinks.size(); i++){
             this.lm.addElement(drinks.get(i).getName() + " " + drinks.get(i).getPrice() + "Ft " +
@@ -109,7 +111,7 @@ public class UserInterface extends JFrame {
 
         scroll.setSize(1000,400);
         scroll.setLocation(0,0);
-
+        add(scroll);
 
     }
 

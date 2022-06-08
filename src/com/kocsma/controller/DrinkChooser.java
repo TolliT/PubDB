@@ -8,6 +8,7 @@ import com.kocsma.view.UserInterface;
 import javax.swing.*;
 import java.util.ArrayList;
 
+import static com.kocsma.controller.Filters.shotFilter;
 import static com.kocsma.controller.Filters.wineBeerFilter;
 import static com.kocsma.view.UserInterface.Cash;
 import static com.kocsma.view.UserInterface.isFood;
@@ -62,7 +63,9 @@ public class DrinkChooser {
         }
 
           generatedList.addAll(newGeneratedList);
-          generatedFood.addAll(newGeneratedFood);
+        if(!newGeneratedFood.isEmpty()) {
+            generatedFood.addAll(newGeneratedFood);
+        }
         currPrice=priceCounter(generatedList, generatedFood);
           newGeneratedList= new ArrayList<>();
           newGeneratedFood=new ArrayList<>();
@@ -70,10 +73,8 @@ public class DrinkChooser {
       }
 
 
-      for(int i=0; i<generatedList.size(); i++){
-          System.out.println(generatedList.get(i).getName());
-      }
-      ui.ShowDrinks(generatedList, generatedFood);
+
+      ui.ShowDrinks(generatedList, generatedFood, currPrice, limit);
 
   }
 
