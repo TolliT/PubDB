@@ -18,7 +18,7 @@ public class Main {
         // TESTING
        drinkList  = FileInit.loadDrinkData();
        foodList = FileInit.loadFoodData();
-       ui= new UserInterface(500, 500);
+       ui= new UserInterface(1000, 500);
        DrinkChooser.drinkChooser(drinkList, foodList, ui);
         Invoice.CreateInvoice(drinkList, foodList);
 
@@ -30,6 +30,7 @@ public class Main {
             drink.saveData();
             System.out.println(drink.getName());
         }
+        screen.ShowDrinks(drinkList);
 
 
         for (Food food: foodList){

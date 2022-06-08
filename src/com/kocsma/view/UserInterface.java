@@ -36,10 +36,10 @@ public class UserInterface extends JFrame {
         setSize(width,height);
         setLocationRelativeTo(null);
         setVisible(true);
-        OK_Button.setSize(250,50);
-        Re_Filter_Button.setSize(250,50);
+        OK_Button.setSize(500,50);
+        Re_Filter_Button.setSize(500,50);
         OK_Button.setLocation(0,400);
-        Re_Filter_Button.setLocation(250,400);
+        Re_Filter_Button.setLocation(500,400);
         add(OK_Button);
         add(Re_Filter_Button);
         add(scroll);
@@ -97,16 +97,17 @@ public class UserInterface extends JFrame {
         lm.removeAllElements();
 
         for(int i = 0; i < drinks.size(); i++){
-            this.lm.addElement(drinks.get(i).getName());
-
+            this.lm.addElement(drinks.get(i).getName() + " " + drinks.get(i).getPrice() + "Ft " +
+                    drinks.get(i).getAlcoholPercentage() + "%");
         }
 
         for(int i=0; i<food.size(); i++){
-            this.lm.addElement(food.get(i).getName());
+            this.lm.addElement(food.get(i).getName() + " " + food.get(i).getPrice() + "Ft " +
+                    food.get(i).getCalories() + "kcal");
         }
 
 
-        scroll.setSize(500,400);
+        scroll.setSize(1000,400);
         scroll.setLocation(0,0);
 
 
