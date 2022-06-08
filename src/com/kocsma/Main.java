@@ -1,10 +1,13 @@
 package com.kocsma;
 
 import com.kocsma.controller.FileInit;
+import com.kocsma.controller.Invoice;
 import com.kocsma.model.Drink;
 import com.kocsma.model.Food;
 import com.kocsma.model.enumerator.DrinkType;
 import com.kocsma.view.UserInterface;
+
+import java.util.ArrayList;
 
 public class Main {
 
@@ -13,28 +16,28 @@ public class Main {
 
         UserInterface screen = new UserInterface(500,500);
         Drink testDrink = new Drink("Teszt Ital2", DrinkType.BEER, 0.50f, 1000);
-        System.out.println(testDrink.getDrinkPrice());
+        System.out.println(testDrink.getPrice());
 
-        Drink[] drinkList = FileInit.loadDrinkData();
-        Food[] foodList = FileInit.loadFoodData();
+        ArrayList<Drink> drinkList = FileInit.loadDrinkData();
+        ArrayList<Food> foodList = FileInit.loadFoodData();
 
-        screen.ShowDrinks(drinkList);
-        screen.ShowDrinks(drinkList);
+        Invoice.CreateInvoice(drinkList, foodList);
+
 
         // test print
 
-        assert drinkList != null;
+        /*
         for (Drink drink : drinkList) {
             drink.saveData();
             System.out.println(drink.getName());
         }
 
-        assert foodList != null;
+
         for (Food food: foodList){
             food.saveData();
             System.out.println(food.getName());
         }
-
+        */
         //testDrink.saveData();
     }
 }
