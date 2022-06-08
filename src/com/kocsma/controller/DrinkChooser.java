@@ -17,12 +17,9 @@ public class DrinkChooser {
 
 
 
-  public static void drinkChooser(){
+  public static void drinkChooser(ArrayList<Drink>  drinkList,ArrayList<Food> foodList, UserInterface ui){
 
-      ArrayList<Drink>  drinkList = FileInit.loadDrinkData();
-      ArrayList<Food> foodList = FileInit.loadFoodData();
 
-      UserInterface ui = new UserInterface(500, 500);
 
 
       ArrayList<Drink> filteredList=wineBeerFilter(drinkList);
@@ -73,7 +70,9 @@ public class DrinkChooser {
       }
 
 
-
+      for(int i=0; i<generatedList.size(); i++){
+          System.out.println(generatedList.get(i).getName());
+      }
       ui.ShowDrinks(generatedList, generatedFood);
 
   }

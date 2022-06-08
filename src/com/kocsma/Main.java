@@ -1,5 +1,6 @@
 package com.kocsma;
 
+import com.kocsma.controller.DrinkChooser;
 import com.kocsma.controller.FileInit;
 import com.kocsma.controller.Invoice;
 import com.kocsma.model.Drink;
@@ -10,17 +11,15 @@ import com.kocsma.view.UserInterface;
 import java.util.ArrayList;
 
 public class Main {
-
+    public static UserInterface ui;
+    public static ArrayList<Drink>  drinkList;
+    public static ArrayList<Food> foodList;
     public static void main(String[] args) {
         // TESTING
-
-        UserInterface screen = new UserInterface(500,500);
-        Drink testDrink = new Drink("Teszt Ital2", DrinkType.BEER, 0.50f, 1000);
-        System.out.println(testDrink.getPrice());
-
-        ArrayList<Drink> drinkList = FileInit.loadDrinkData();
-        ArrayList<Food> foodList = FileInit.loadFoodData();
-
+       drinkList  = FileInit.loadDrinkData();
+       foodList = FileInit.loadFoodData();
+       ui= new UserInterface(500, 500);
+       DrinkChooser.drinkChooser(drinkList, foodList, ui);
         Invoice.CreateInvoice(drinkList, foodList);
 
 

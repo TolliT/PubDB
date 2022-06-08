@@ -46,14 +46,14 @@ public class UserInterface extends JFrame {
         OK_Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("OK");
+                System.exit(0);
             }
         });
         Re_Filter_Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
 
-                drinkChooser();}
+                drinkChooser(Main.drinkList, Main.foodList, Main.ui);}
         });
         setVisible(true);
 
@@ -84,7 +84,7 @@ public class UserInterface extends JFrame {
     }
     public static Boolean isFood(){
         String[] buttons = { "Igen", "Nem"};
-        int returnValue = JOptionPane.showOptionDialog(null, "Szeretne kajálni is?", "",
+        int returnValue = JOptionPane.showOptionDialog(null, "Szeretne enni is?", "",
                 JOptionPane.DEFAULT_OPTION , JOptionPane.PLAIN_MESSAGE, null, buttons, buttons[0]);
         return (returnValue == 0);
     }
@@ -98,6 +98,7 @@ public class UserInterface extends JFrame {
 
         for(int i = 0; i < drinks.size(); i++){
             this.lm.addElement(drinks.get(i).getName());
+
         }
 
         for(int i=0; i<food.size(); i++){
