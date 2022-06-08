@@ -54,7 +54,7 @@ public class DrinkChooser {
       while(currPrice<limit){
 
             //étel választásnál 1:4-hez arányban adja az ételt az italhoz tehát nem lehet többet enni, mint inni
-            if(wantsToEat && rand.nextInt(101)<25){
+            if(wantsToEat && rand.nextInt(101)<20){
             newGeneratedFood=foodPicker(foodList, currPrice, limit);
          }
 
