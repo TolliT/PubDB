@@ -16,11 +16,11 @@ public class Main {
     public static ArrayList<Food> foodList;
     public static void main(String[] args) {
         // TESTING
-       drinkList  = FileInit.loadDrinkData();
-       foodList = FileInit.loadFoodData();
-       ui= new UserInterface(1000, 500);
+        ui= new UserInterface(1000, 500);
+        drinkList  = FileInit.loadDrinkData();
+        foodList = FileInit.loadFoodData();
        DrinkChooser.drinkChooser(drinkList, foodList, ui);
-        Invoice.CreateInvoice(drinkList, foodList);
+       Invoice.CreateInvoice(drinkList, foodList);
 
 
         // test print
