@@ -20,11 +20,13 @@ public class Main {
 
         assert drinkList != null;
         for (Drink drink : drinkList) {
+            drink.saveData();
             System.out.println(drink.getName());
         }
 
         assert foodList != null;
         for (Food food: foodList){
+            food.saveData();
             System.out.println(food.getName());
         }
 

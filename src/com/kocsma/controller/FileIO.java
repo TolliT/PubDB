@@ -16,7 +16,7 @@ public class FileIO <T> {
 
         try {
             // osztalynak megfelelo database ertek lekerese
-            Object val = clazz.getField("database").get(clazz);
+            Object val = superClazz.getField("invoice").get(clazz);
 
             FileWriter f = new FileWriter(val.toString(), true);
             CSVWriter writer = new CSVWriter(f);
