@@ -10,7 +10,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import com.kocsma.Main;
+
+import static com.kocsma.controller.DrinkChooser.drinkChooser;
+
 public class UserInterface extends JFrame {
+
+
     private DefaultListModel<String> lm = new DefaultListModel<>();
     private JList<String> jl = new JList<>(lm);
     private JScrollPane scroll = new JScrollPane(jl);
@@ -45,9 +51,9 @@ public class UserInterface extends JFrame {
         });
         Re_Filter_Button.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("redo");
-            }
+            public void actionPerformed(ActionEvent e){
+
+                drinkChooser();}
         });
         setVisible(true);
 
@@ -104,4 +110,6 @@ public class UserInterface extends JFrame {
 
 
     }
+
+
 }

@@ -8,6 +8,7 @@ import com.kocsma.view.UserInterface;
 import javax.swing.*;
 import java.util.ArrayList;
 
+import static com.kocsma.controller.Filters.wineBeerFilter;
 import static com.kocsma.view.UserInterface.Cash;
 import static com.kocsma.view.UserInterface.isFood;
 
@@ -16,7 +17,15 @@ public class DrinkChooser {
 
 
 
-  public static void drinkChooser(ArrayList<Drink> filteredList, ArrayList<Food> foodList, UserInterface ui){
+  public static void drinkChooser(){
+
+      ArrayList<Drink>  drinkList = FileInit.loadDrinkData();
+      ArrayList<Food> foodList = FileInit.loadFoodData();
+
+      UserInterface ui = new UserInterface(500, 500);
+
+
+      ArrayList<Drink> filteredList=wineBeerFilter(drinkList);
 
       Boolean wantsToEat=isFood();
       Integer limit=Cash();
@@ -63,13 +72,7 @@ public class DrinkChooser {
 
       }
 
-      /*for (Drink drink : generatedList) {
-          System.out.println(drink.getName() + " " + drink.getPrice() + " Ft");
-      }
-      for (Food food : generatedFood) {
-          System.out.println(food.getName() + " " + food.getPrice() + " Ft");
-      }
-      System.out.println("Limit: " + limit+ " Ft\n"+ "Aktuális ár: " + currPrice+ " Ft");*/
+
 
       ui.ShowDrinks(generatedList, generatedFood);
 

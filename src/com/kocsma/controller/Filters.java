@@ -21,6 +21,7 @@ public class Filters {
             }
 
         }
+        drinkList=shotFilter(drinkList);
 
         return drinkList;
     }
