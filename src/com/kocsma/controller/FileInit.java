@@ -9,14 +9,19 @@ import java.io.FileReader;
 import java.sql.Array;
 import java.util.ArrayList;
 
+/** Kiolvassa  PubDB adatbázisból a listákat először a Drink-et majd a Food-ot.
+ *
+ */
+
 public class FileInit {
     public static ArrayList<Drink> loadDrinkData() {
         try {
-
+            //Feltölti az adatbázisokat a Drink listába
             ArrayList<Drink> drinkList = new ArrayList<>();
 
             FileReader file = new FileReader(Drink.database);
             CSVReader reader = new CSVReader(file);
+            //kiolvassa a Drink adatbázisból a lehetőségeket és összeállít egy nyugtát az árlimitre
 
             String[] record;
 
@@ -37,11 +42,12 @@ public class FileInit {
 
     public static ArrayList<Food> loadFoodData(){
         try {
-
+            //Feltölti az adatbázisokat a Drink listába
             ArrayList<Food> foodList = new ArrayList<>();
 
             FileReader file = new FileReader(Food.database);
             CSVReader reader = new CSVReader(file);
+            //kiolvassa a Food adatbázisból a lehetőségeket és összeállít egy nyugtát az árlimitre
 
             String[] record;
 

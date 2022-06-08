@@ -14,7 +14,13 @@ import com.kocsma.Main;
 
 import static com.kocsma.controller.DrinkChooser.drinkChooser;
 
+/**
+ * Ez az oldal felel a megjelenésért.
+ */
+
 public class UserInterface extends JFrame {
+
+    //Az alap ablak ami végül a nyugta is lesz
 
 
     private DefaultListModel<String> lm = new DefaultListModel<>();
@@ -22,8 +28,12 @@ public class UserInterface extends JFrame {
     private JScrollPane scroll = new JScrollPane(jl);
 
     private JLabel Header_Text = new JLabel("Sorsolt italok az estére",JLabel.LEFT);
+    //A címe "Sorsolt italok az estére" a bal felső sarokban jelenik meg.
     private JButton OK_Button = new JButton("OK");
+    //OK gomb az ablak bal alsó sarkában ami leokézza a rendelést
     private JButton Re_Filter_Button = new JButton("Mégegyszer");
+    //Az ablak jobb alsó sarkában a "Mégegyszer" gomb arra jó ha újra akarjuk generálni a random rendelést.
+
     private JSplitPane Button_Splitter = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 
 
@@ -63,6 +73,8 @@ public class UserInterface extends JFrame {
 
 
     }
+
+    //Itt kapja meg, hogy a sör vagy bor gonbot nyomjuk
     public static DrinkType isBeer(){
         String[] buttons = { "Bort", "Sört"};
         int returnValue = JOptionPane.showOptionDialog(null, "Bort vagy sört szeretne inni?", "",
@@ -75,6 +87,8 @@ public class UserInterface extends JFrame {
             return DrinkType.BEER;
         }
     }
+
+    //itt érzékeli h kértünk e shot-ot
     public static Boolean isShot(){
         String[] buttons = { "Igen", "Nem"};
         int returnValue = JOptionPane.showOptionDialog(null, "Szeretne felest inni?", "",
@@ -82,17 +96,24 @@ public class UserInterface extends JFrame {
         return (returnValue == 0);
 
     }
+
+    //Itt, hogy kérünk e ételt
     public static Boolean isFood(){
         String[] buttons = { "Igen", "Nem"};
         int returnValue = JOptionPane.showOptionDialog(null, "Szeretne enni is?", "",
                 JOptionPane.DEFAULT_OPTION , JOptionPane.PLAIN_MESSAGE, null, buttons, buttons[0]);
         return (returnValue == 0);
     }
+
+    //itt adjuk meg az ár limitet
     public static Integer Cash(){
         int returnValue = Integer.parseInt(JOptionPane.showInputDialog(null,"Mennyit szeretne költeni?","",
                 JOptionPane.PLAIN_MESSAGE));
         return returnValue;
     }
+
+    //a nyugtán kiírja a limitet Ft-ba amit megadtunk
+    //És hogy mennyi a végösszeg ami legfeljebb annyi mint a megadott limit
     public void ShowDrinks(ArrayList<Drink> drinks, ArrayList<Food> food, Integer currPrice, Integer limit){
         lm.removeAllElements();
         this.lm.addElement("limit: "+ limit + " Ft");

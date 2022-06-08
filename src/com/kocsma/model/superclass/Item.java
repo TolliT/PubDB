@@ -2,6 +2,10 @@ package com.kocsma.model.superclass;
 
 import com.kocsma.model.GetterFunctionName;
 
+/** Az Item az ősosztály.
+ * A két alosztálya a Drink és a Food.
+ */
+
 public abstract class Item {
     public static final String invoice = "./resources/invoice.csv";
     // TODO: kicserelni az aktualis adatbazisra

@@ -3,6 +3,10 @@ package com.kocsma.model;
 import com.kocsma.controller.FileIO;
 import com.kocsma.model.superclass.Item;
 
+/**
+ *
+ */
+
 public class Food extends Item {
     public static final String database = "./resources/foodDB.csv";
 
