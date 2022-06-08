@@ -5,11 +5,15 @@ import com.kocsma.model.enumerator.DrinkType;
 
 import java.util.ArrayList;
 
+import static com.kocsma.view.UserInterface.isBeer;
+import static com.kocsma.view.UserInterface.isShot;
+
+
 public class Filters {
 
-    public static ArrayList<Drink> wineBeerFilter(DrinkType choice, ArrayList<Drink> drinkList){
+    public static ArrayList<Drink> wineBeerFilter( ArrayList<Drink> drinkList){
 
-
+        DrinkType choice = isBeer();
 
         for(int i=0; i<drinkList.size(); i++ ){
             if(drinkList.get(i).getDrinkType()==choice){
@@ -21,7 +25,9 @@ public class Filters {
         return drinkList;
     }
 
-    public static ArrayList<Drink> shotFilter(Boolean choice, ArrayList<Drink> drinkList){
+    public static ArrayList<Drink> shotFilter(ArrayList<Drink> drinkList){
+
+        Boolean choice=isShot();
 
         if(choice){
             return drinkList;

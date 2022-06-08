@@ -2,6 +2,8 @@ package com.kocsma.view;
 
 import javax.swing.*;
 import com.kocsma.model.Drink;
+import com.kocsma.model.Food;
+import com.kocsma.model.enumerator.DrinkType;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -28,14 +30,6 @@ public class UserInterface extends JFrame {
         setSize(width,height);
         setLocationRelativeTo(null);
         setVisible(true);
-        Boolean b = isBeer();
-        System.out.println(b);
-        b = isShot();
-        System.out.println(b);
-        b = isFood();
-        System.out.println(b);
-        Integer i = Cash();
-        System.out.println(i);
         OK_Button.setSize(250,50);
         Re_Filter_Button.setSize(250,50);
         OK_Button.setLocation(0,400);
@@ -63,11 +57,17 @@ public class UserInterface extends JFrame {
 
 
     }
-    public static Boolean isBeer(){
+    public static DrinkType isBeer(){
         String[] buttons = { "Bort", "Sört"};
         int returnValue = JOptionPane.showOptionDialog(null, "Bort vagy sört szeretne inni?", "",
                 JOptionPane.DEFAULT_OPTION , JOptionPane.PLAIN_MESSAGE, null, buttons, buttons[0]);
-        return (returnValue == 1);
+        if(returnValue==1){
+            return DrinkType.WINE;
+        }
+
+        else{
+            return DrinkType.BEER;
+        }
     }
     public static Boolean isShot(){
         String[] buttons = { "Igen", "Nem"};
@@ -87,11 +87,15 @@ public class UserInterface extends JFrame {
                 JOptionPane.PLAIN_MESSAGE));
         return returnValue;
     }
-    public void ShowDrinks(Drink[] drinks){
+    public void ShowDrinks(ArrayList<Drink> drinks, ArrayList<Food> food){
         lm.removeAllElements();
 
-        for(int i = 0; i < drinks.length; i++){
-            this.lm.addElement(drinks[i].getName());
+        for(int i = 0; i < drinks.size(); i++){
+            this.lm.addElement(drinks.get(i).getName());
+        }
+
+        for(int i=0; i<food.size(); i++){
+            this.lm.addElement(food.get(i).getName());
         }
 
 

@@ -14,9 +14,7 @@ public class Drink extends Item {
     private DrinkType drinkType;
     @GetterFunctionName(name="getAlcoholPercentage")
     private Float alcoholPercentage;
-    @GetterFunctionName(name="getDrinkPrice")
-    private Integer price; // literben TODO: normalisabb valtozonev maybe??
-    //private HashMap<Float, Integer> prices; // urmertek - ar parokat tarolja el
+
 
     public Drink(String name, DrinkType drinkType, Float alcoholPercentage, Integer price){
         super(name, price);
@@ -28,10 +26,6 @@ public class Drink extends Item {
         if(this.alcoholPercentage > MAX_A_PERCENT) this.alcoholPercentage = MAX_A_PERCENT;
         else if(this.alcoholPercentage <  MIN_A_PERCENT) this.alcoholPercentage = MIN_A_PERCENT;
 
-        this.price = price;
-
-        if(this.price < 0){ this.price = 0; }
-        //this.prices = prices;
     }
 
     public DrinkType getDrinkType(){
@@ -42,9 +36,6 @@ public class Drink extends Item {
         return this.alcoholPercentage;
     }
 
-    public Integer getDrinkPrice(){
-        return this.price;
-    }
 
     public void saveData(){
         FileIO<Drink> f = new FileIO<>();

@@ -3,18 +3,23 @@ package com.kocsma.controller;
 import java.util.Random;
 import com.kocsma.model.Drink;
 import com.kocsma.model.Food;
+import com.kocsma.view.UserInterface;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
+import static com.kocsma.view.UserInterface.Cash;
+import static com.kocsma.view.UserInterface.isFood;
 
 
 public class DrinkChooser {
 
 
-public static Integer foodprices=0;
-  public static void drinkChooser(ArrayList<Drink> filteredList, ArrayList<Food> foodList, Boolean wantsToEat, Integer limit){
 
+  public static void drinkChooser(ArrayList<Drink> filteredList, ArrayList<Food> foodList, UserInterface ui){
 
+      Boolean wantsToEat=isFood();
+      Integer limit=Cash();
 
       ArrayList<Drink> generatedList= new ArrayList<>();
       ArrayList<Food> generatedFood=new ArrayList<>();
@@ -25,10 +30,12 @@ public static Integer foodprices=0;
       Random rand= new Random();
 
 
-      if(wantsToEat && foodprices+currPrice<=limit){
+      if(wantsToEat){
           Food firstFood=foodList.get(rand.nextInt(foodList.size()));
-          generatedFood.add(firstFood);
-          currPrice+=foodprices;
+          if(firstFood.getPrice()+currPrice<=limit){
+              generatedFood.add(firstFood);
+              currPrice+=firstFood.getPrice();
+          }
       }
 
 
@@ -37,7 +44,7 @@ public static Integer foodprices=0;
 
 
             if(wantsToEat && rand.nextInt(101)<25){
-            newGeneratedFood=foodPicker(newGeneratedFood, foodList, currPrice, limit);
+            newGeneratedFood=foodPicker(foodList, currPrice, limit);
          }
 
         else{
@@ -51,14 +58,21 @@ public static Integer foodprices=0;
           generatedList.addAll(newGeneratedList);
           generatedFood.addAll(newGeneratedFood);
         currPrice=priceCounter(generatedList, generatedFood);
-
+          newGeneratedList= new ArrayList<>();
+          newGeneratedFood=new ArrayList<>();
 
       }
 
-      for (Drink drink : generatedList) {
-          System.out.println(drink.getName() + " " + drink.getDrinkPrice() + " Ft");
+      /*for (Drink drink : generatedList) {
+          System.out.println(drink.getName() + " " + drink.getPrice() + " Ft");
       }
-      System.out.println("Limit: " + limit+ " Ft\n"+ "Aktuális ár: " + currPrice+ " Ft");
+      for (Food food : generatedFood) {
+          System.out.println(food.getName() + " " + food.getPrice() + " Ft");
+      }
+      System.out.println("Limit: " + limit+ " Ft\n"+ "Aktuális ár: " + currPrice+ " Ft");*/
+
+      ui.ShowDrinks(generatedList, generatedFood);
+
   }
 
    static ArrayList<Drink> drinkPicker(ArrayList<Drink> filteredList, Integer currPrice, Integer limit){
@@ -69,7 +83,7 @@ public static Integer foodprices=0;
         for(tries=0; tries<=10;tries++){
 
             Drink current=filteredList.get(rand.nextInt(filteredList.size()));
-            if(current.getDrinkPrice()+currPrice<=limit){
+            if(current.getPrice()+currPrice<=limit){
                 newGeneratedList.add(current);
 
                 break;
@@ -92,9 +106,9 @@ public static Integer foodprices=0;
       int maxFittingPrice=0, maxIndex=0;
 
       for(int i=0; i<filteredList.size(); i++){
-          if(filteredList.get(i).getDrinkPrice()>maxFittingPrice && filteredList.get(i).getDrinkPrice() + currPrice<=limit ){
+          if(filteredList.get(i).getPrice()>maxFittingPrice && filteredList.get(i).getPrice() + currPrice<=limit ){
               maxIndex=i;
-              maxFittingPrice=filteredList.get(i).getDrinkPrice();
+              maxFittingPrice=filteredList.get(i).getPrice();
 
           }
         }
@@ -110,20 +124,19 @@ public static Integer foodprices=0;
     }
 
 
-  static  ArrayList<Food> foodPicker( ArrayList<Food> newGeneratedFood, ArrayList<Food> foodList, Integer currPrice, Integer limit){
+  static  ArrayList<Food> foodPicker(ArrayList<Food> foodList, Integer currPrice, Integer limit){
         Random rand= new Random();
         int tries;
-
+      ArrayList<Food> newGeneratedFood= new ArrayList<>();
 
         for(tries=0; tries<=10;tries++){
 
             Food current=foodList.get(rand.nextInt(foodList.size()));
-            if(foodprices+currPrice<=limit){
+            if(current.getPrice()+currPrice<=limit){
                 newGeneratedFood.add(current);
-                currPrice+=foodprices;
+
                 break;
             }
-
         }
 
         if(tries==11){
@@ -139,15 +152,15 @@ public static Integer foodprices=0;
         int maxFittingPrice=0, maxIndex=0;
 
         for(int i=0; i<foodList.size(); i++){
-            if(foodprices>maxFittingPrice && foodprices + currPrice<=limit ){
+            if(foodList.get(i).getPrice()>maxFittingPrice && foodList.get(i).getPrice() + currPrice<=limit ){
                 maxIndex=i;
 
-                maxFittingPrice=foodprices;
+                maxFittingPrice=foodList.get(i).getPrice();
             }
         }
 
         if(maxFittingPrice!=0){
-            foodList.add(foodList.get(maxIndex));
+            newGeneratedFood.add(foodList.get(maxIndex));
             currPrice+=maxFittingPrice;
             newGeneratedFood=lastFoodTry(foodList, newGeneratedFood,  currPrice, limit);
         }
@@ -163,11 +176,11 @@ public static Integer foodprices=0;
    static Integer priceCounter(ArrayList<Drink> generatedList, ArrayList<Food> generatedFood){
        Integer currPrice = 0;
        for (Drink drink : generatedList) {
-           currPrice += drink.getDrinkPrice();
+           currPrice += drink.getPrice();
        }
-        for(int i=0; i<generatedFood.size(); i++){
-            currPrice +=foodprices;
-        }
+       for (Food food : generatedFood) {
+           currPrice += food.getPrice();
+       }
 
 
         return currPrice;

@@ -6,23 +6,14 @@ import com.kocsma.model.enumerator.DrinkType;
 import com.opencsv.CSVReader;
 
 import java.io.FileReader;
+import java.sql.Array;
+import java.util.ArrayList;
 
 public class FileInit {
-    public static Drink[] loadDrinkData() {
+    public static ArrayList<Drink> loadDrinkData() {
         try {
-            int index = 0;
-            FileReader f = new FileReader(Drink.database);
-            CSVReader r = new CSVReader(f);
 
-            while(r.readNext() != null){
-                index++;
-            }
-
-            Drink[] drinkList = new Drink[index];
-            index = 0;
-
-            f.close();
-            r.close();
+            ArrayList<Drink> drinkList = new ArrayList<>();
 
             FileReader file = new FileReader(Drink.database);
             CSVReader reader = new CSVReader(file);
@@ -30,8 +21,7 @@ public class FileInit {
             String[] record;
 
             while((record = reader.readNext()) != null){
-                drinkList[index] = new Drink(record[0], DrinkType.valueOf(record[1]), Float.valueOf(record[2]), Integer.valueOf(record[3]));
-                index++;
+                drinkList.add(new Drink(record[0], DrinkType.valueOf(record[1]), Float.valueOf(record[2]), Integer.valueOf(record[3])));
             }
 
             reader.close();
@@ -45,21 +35,10 @@ public class FileInit {
         return null;
     }
 
-    public static Food[] loadFoodData(){
+    public static ArrayList<Food> loadFoodData(){
         try {
-            int index = 0;
-            FileReader f = new FileReader(Food.database);
-            CSVReader r = new CSVReader(f);
 
-            while(r.readNext() != null){
-                index++;
-            }
-
-            Food[] foodList = new Food[index];
-            index = 0;
-
-            f.close();
-            r.close();
+            ArrayList<Food> foodList = new ArrayList<>();
 
             FileReader file = new FileReader(Food.database);
             CSVReader reader = new CSVReader(file);
@@ -67,8 +46,8 @@ public class FileInit {
             String[] record;
 
             while((record = reader.readNext()) != null){
-                foodList[index] = new Food(record[0], Integer.valueOf(record[1]), Integer.valueOf(record[2]));
-                index++;
+                foodList.add( new Food(record[0], Integer.valueOf(record[1]), Integer.valueOf(record[2])));
+
             }
 
             reader.close();
