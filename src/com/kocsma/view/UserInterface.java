@@ -1,13 +1,12 @@
 package com.kocsma.view;
 
 import javax.swing.*;
+
+import com.kocsma.controller.ExceptionHandler;
 import com.kocsma.model.Drink;
 import com.kocsma.model.Food;
 import com.kocsma.model.enumerator.DrinkType;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import com.kocsma.Main;
@@ -23,48 +22,34 @@ public class UserInterface extends JFrame {
     //Az alap ablak ami végül a nyugta is lesz
 
 
-    private DefaultListModel<String> lm = new DefaultListModel<>();
-    private JList<String> jl = new JList<>(lm);
-    private JScrollPane scroll = new JScrollPane(jl);
+    private final DefaultListModel<String> lm = new DefaultListModel<>();
+    private final JList<String> jl = new JList<>(lm);
+    private final JScrollPane scroll = new JScrollPane(jl);
 
-    private JLabel Header_Text = new JLabel("Sorsolt italok az estére",JLabel.LEFT);
-    //A címe "Sorsolt italok az estére" a bal felső sarokban jelenik meg.
-    private JButton OK_Button = new JButton("OK");
-    //OK gomb az ablak bal alsó sarkában ami leokézza a rendelést
-    private JButton Re_Filter_Button = new JButton("Mégegyszer");
     //Az ablak jobb alsó sarkában a "Mégegyszer" gomb arra jó ha újra akarjuk generálni a random rendelést.
 
-    private JSplitPane Button_Splitter = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 
 
 
     public UserInterface(int width, int height){
-        //SpringLayout layout = new SpringLayout();
-        //setLayout(layout);
         setTitle("Sorsolt italok az estére");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(width,height);
         setLocationRelativeTo(null);
         setVisible(true);
+        //A címe "Sorsolt italok az estére" a bal felső sarokban jelenik meg.
+        JButton OK_Button = new JButton("OK");
         OK_Button.setSize(500,50);
-        Re_Filter_Button.setSize(500,50);
+        //OK gomb az ablak bal alsó sarkában ami leokézza a rendelést
+        JButton re_Filter_Button = new JButton("Mégegyszer");
+        re_Filter_Button.setSize(500,50);
         OK_Button.setLocation(0,400);
-        Re_Filter_Button.setLocation(500,400);
+        re_Filter_Button.setLocation(500,400);
         add(OK_Button);
-        add(Re_Filter_Button);
+        add(re_Filter_Button);
         add(scroll);
-        OK_Button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-        Re_Filter_Button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e){
-
-                drinkChooser(Main.drinkList, Main.foodList, Main.ui);}
-        });
+        OK_Button.addActionListener(e -> System.exit(0));
+        re_Filter_Button.addActionListener(e -> drinkChooser(Main.drinkList, Main.foodList, Main.ui));
         setVisible(true);
 
 
@@ -107,9 +92,13 @@ public class UserInterface extends JFrame {
 
     //itt adjuk meg az ár limitet
     public static Integer Cash(){
-        int returnValue = Integer.parseInt(JOptionPane.showInputDialog(null,"Mennyit szeretne költeni?","",
-                JOptionPane.PLAIN_MESSAGE));
-        return returnValue;
+        try {
+            return Integer.parseInt(JOptionPane.showInputDialog(null, "Mennyit szeretne költeni?", "",
+                    JOptionPane.PLAIN_MESSAGE));
+        } catch (Exception ex){
+            ExceptionHandler.errorData(ex);
+        }
+        return 0;
     }
 
     //a nyugtán kiírja a limitet Ft-ba amit megadtunk
@@ -125,14 +114,14 @@ public class UserInterface extends JFrame {
         else if(drinks.isEmpty()){
             this.lm.addElement("Úgy látszik, nem került alkohol a listára. Gratulálunk, megvan az esti sofőr!");
         }
-        for(int i = 0; i < drinks.size(); i++){
-            this.lm.addElement(drinks.get(i).getName() + " " + drinks.get(i).getPrice() + "Ft " +
-                    drinks.get(i).getAlcoholPercentage() + "%");
+        for (Drink drink : drinks) {
+            this.lm.addElement(drink.getName() + " " + drink.getPrice() + "Ft " +
+                    drink.getAlcoholPercentage() + "%");
         }
 
-        for(int i=0; i<food.size(); i++){
-            this.lm.addElement(food.get(i).getName() + " " + food.get(i).getPrice() + "Ft " +
-                    food.get(i).getCalories() + "kcal");
+        for (Food value : food) {
+            this.lm.addElement(value.getName() + " " + value.getPrice() + "Ft " +
+                    value.getCalories() + "kcal");
         }
 
 

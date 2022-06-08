@@ -40,17 +40,14 @@ public class Filters {
 
         Boolean choice=isShot();
 
-        if(choice){
-            return drinkList;
-        }
-        else {
+        if (!choice) {
             for (int i = 0; i < drinkList.size(); i++) {
-                if(drinkList.get(i).getDrinkType()==DrinkType.SHOT){
+                if (drinkList.get(i).getDrinkType() == DrinkType.SHOT) {
                     drinkList.remove(i);
                 }
             }
-            return drinkList;
         }
+        return drinkList;
 
     }
 

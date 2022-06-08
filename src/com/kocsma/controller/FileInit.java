@@ -6,7 +6,6 @@ import com.kocsma.model.enumerator.DrinkType;
 import com.opencsv.CSVReader;
 
 import java.io.FileReader;
-import java.sql.Array;
 import java.util.ArrayList;
 
 /** Kiolvassa  PubDB adatbázisból a listákat először a Drink-et majd a Food-ot.
@@ -34,8 +33,7 @@ public class FileInit {
 
             return drinkList;
         } catch (Exception ex) {
-            // TODO: hibakezelo fuggveny
-            ex.printStackTrace();
+            ExceptionHandler.errorData(ex);
         }
         return null;
     }
@@ -61,8 +59,7 @@ public class FileInit {
 
             return foodList;
         } catch (Exception ex) {
-            // TODO: hibakezelo fuggveny
-            ex.printStackTrace();
+            ExceptionHandler.errorData(ex);
         }
         return null;
     }

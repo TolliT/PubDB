@@ -11,9 +11,9 @@ public abstract class Item {
     // TODO: kicserelni az aktualis adatbazisra
 
     @GetterFunctionName(name="getName")
-    private String name;
+    private final String name;
     @GetterFunctionName(name="getPrice")
-    private Integer price;
+    private final Integer price;
 
     public Item(String name, Integer price){
         this.name = name;

@@ -11,7 +11,7 @@ public class Drink extends Item {
     public final Float MIN_A_PERCENT = 0.0f;
 
     @GetterFunctionName(name="getDrinkType")
-    private DrinkType drinkType;
+    private final DrinkType drinkType;
     @GetterFunctionName(name="getAlcoholPercentage")
     private Float alcoholPercentage;
 

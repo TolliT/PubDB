@@ -35,7 +35,6 @@ public class FileIO <T> {
                     String gfn = sProperty.getAnnotation(GetterFunctionName.class).name();
                     Method gm = clazz.getMethod(gfn);
 
-                    String varName = sProperty.getName();
                     String value = gm.invoke(entity).toString();
 
 
@@ -85,8 +84,7 @@ public class FileIO <T> {
 
 
         } catch (Exception ex) {
-            // TODO: hibakezelo fuggveny
-            ex.printStackTrace();
+            ExceptionHandler.errorData(ex);
         }
     }
 }

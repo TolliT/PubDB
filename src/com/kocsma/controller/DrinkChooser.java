@@ -5,10 +5,8 @@ import com.kocsma.model.Drink;
 import com.kocsma.model.Food;
 import com.kocsma.view.UserInterface;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
-import static com.kocsma.controller.Filters.shotFilter;
 import static com.kocsma.controller.Filters.wineBeerFilter;
 import static com.kocsma.view.UserInterface.Cash;
 import static com.kocsma.view.UserInterface.isFood;
@@ -29,7 +27,7 @@ public class DrinkChooser {
         //Új listákat generál amiket feltölt a Drink és Food osztályokból, listákból.
       ArrayList<Drink> filteredList=wineBeerFilter(drinkList);
 
-      Boolean wantsToEat=isFood();
+      boolean wantsToEat=isFood();
       Integer limit=Cash();
 
       ArrayList<Drink> generatedList= new ArrayList<>();
